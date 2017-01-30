@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>QuickFeedIntegration</artifactId>
+	<groupId>com.sivadas.anand.quickfeed.integration</groupId>
+	<name>QuickFeed Integration</name>
+	<description>Spring Boot Chron micro service for QuickFeed</description>
+	<version>1.0-SNAPSHOT</version>
+	<properties>
+		<com.fasterxml.version>2.6.6</com.fasterxml.version>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${com.fasterxml.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${com.fasterxml.version}</version>
+		</dependency>
+	</dependencies>
+
+
+</project>

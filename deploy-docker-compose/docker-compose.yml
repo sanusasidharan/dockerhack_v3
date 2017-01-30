@@ -1,0 +1,67 @@
+version: '2.0'
+  
+services:
+    mongodata:
+        image: mongo:3.2
+        volumes:
+        - /data/db
+        entrypoint: /bin/bash
+    mongo:
+        image: mongo:3.2
+        depends_on: 
+            - mongodata
+        volumes_from:
+            - mongodata
+        ports:
+            - "127.0.0.1:31051:31051"
+    bootmongo:
+        image: r82anand/bootmongo
+        depends_on: 
+            - mongo
+        environment:
+            - MONGODB_DB_NAME=feeds
+        ports:
+            - "127.0.0.1:31041:31041"
+        links:
+            - mongo
+        domainname: bootrest.com
+        hostname: bootrest
+        ipc: host
+        mac_address: 02:42:ac:11:65:43
+   
+    bootchron:
+        image: r82anand/bootchron
+        depends_on: 
+            - bootmongo
+            - mongo
+        ports:
+            - "127.0.0.1:31011:31011"
+        domainname: bootrest.com
+        hostname: bootrest
+        ipc: host
+        mac_address: 02:42:ac:11:65:43
+
+    bootrest:
+        image: r82anand/bootrest
+        depends_on: 
+            - bootmongo
+        ports:
+            - "127.0.0.1:31031:31031"
+        domainname: bootrest.com
+        hostname: bootrest
+        ipc: host
+        mac_address: 02:42:ac:11:65:43
+
+    app.blogpost.client:
+        image: mail2sanu/app.blogpost.client
+        depends_on:
+        - bootrest
+        - bootmongo
+        - mongo
+        ports: 
+          - "127.0.0.1:31015:31015" 
+        domainname: bootrest.com
+        hostname: bootrest
+        ipc: host
+        mac_address: 02:42:ac:11:65:43
+
